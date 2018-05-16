@@ -18,7 +18,7 @@ export default class extends Component {
             // If we have something stored here, create another array
             clubs[clubtype] = clubs[clubtype]
                 ? [...clubs[clubtype], club]
-                : [clubs]
+                : [club]
 
             return clubs
         }, {})
