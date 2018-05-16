@@ -6,7 +6,7 @@ import { clubtype, clubs } from '../store.js'
 // State information of application
 export default class extends Component {
     state = {
-        clubs
+        clubs,
     }
 
     // Modify the data before passing it to Clubs
@@ -25,8 +25,18 @@ export default class extends Component {
     )
     }
 
+    // Method to handle the tabs for type of club selected
+    handleClubSelected = category => {
+        this.setState({
+            category
+        })
+    }
+
+
+
     render() {
-        const clubs = this.getClubsByType()
+        const clubs = this.getClubsByType(),
+            { category } = this.state
         return <Fragment>
             <Header />
 
@@ -35,7 +45,9 @@ export default class extends Component {
             />
 
             <Footer 
-                clubtype={clubtype}               
+                category={category}
+                clubtype={clubtype}
+                onSelect={this.handleClubSelected}               
             />
         </Fragment>
     }
