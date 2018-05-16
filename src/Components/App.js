@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
-import { Header, Footer } from './'
+import { Header, Footer } from './Layouts'
+import Clubs from './Clubs'
 
 // State information of application
 export default class extends Component {
@@ -7,6 +8,8 @@ export default class extends Component {
         return <Fragment>
             <Header />
 
+            <Clubs />
+            
             <Footer />
         </Fragment>
     }
