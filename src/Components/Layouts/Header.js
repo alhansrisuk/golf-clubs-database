@@ -1,13 +1,13 @@
 import React from 'react'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { AppBar, Toolbar } from 'material-ui'
+import { AppBar, Toolbar, Typography } from 'material-ui'
 
 
 export default props =>
-    <MuiThemeProvider>
     <AppBar position="static">
         <Toolbar>
-
+            <Typography variant="headline" color="inherit">
+                Golf Clubs Database
+            </Typography>
         </Toolbar>
       </AppBar>
-    </MuiThemeProvider>
+
