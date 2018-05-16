@@ -13,13 +13,22 @@ const styles = {
 }
 
 // Business logic
-export default ({ clubs, category }) => 
+export default ({ 
+    clubs, 
+    category, 
+    onSelect, 
+    club: {
+        id, 
+        model = 'Welcome!', 
+        description = 'Select a golf club from the list on the left.'
+    } 
+   }) => 
     <Grid container>
         <Grid item sm>
             <Paper style={ styles.Paper }>
-                {clubs.map(([type, clubs]) =>
+                {clubs.map(([type, clubs]) => // shows the club type selected in the left pane
                   !category || category === type
-                    ? <Fragment>
+                    ? <Fragment key={type}>
                         <Typography 
                             variant="headline"
                             style={{textTransform: 'capitalize'}}
@@ -27,8 +36,12 @@ export default ({ clubs, category }) =>
                             {type}
                         </Typography>
                             <List component="ul">
-                                {clubs.map(({ model }) =>
-                                    <ListItem button>
+                                {clubs.map(({ id, model }) =>
+                                    <ListItem
+                                        key={id}
+                                        button
+                                        onClick={() => onSelect(id)}
+                                    >
                                         <ListItemText primary={model} />
                                     </ListItem>
                             )}
@@ -43,13 +56,13 @@ export default ({ clubs, category }) =>
                 <Typography
                     variant="display1"
                 > 
-                Welcome!
+                {model}
                 </Typography>
                 <Typography
                     variant="subheading"
                     style={{ marginTop: 15 }}
                 > 
-                Select a golf club from the list on the left.
+                {description}
                 </Typography>
             </Paper>
         </Grid>

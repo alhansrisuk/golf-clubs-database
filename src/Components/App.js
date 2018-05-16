@@ -7,6 +7,7 @@ import { clubtype, clubs } from '../store.js'
 export default class extends Component {
     state = {
         clubs,
+        club: {}
     }
 
     // Modify the data before passing it to Clubs
@@ -26,29 +27,35 @@ export default class extends Component {
     }
 
     // Method to handle the tabs for type of club selected
-    handleClubSelected = category => {
+    handleCategorySelected = category => {
         this.setState({
             category
         })
     }
 
-
+    handleClubSelected = id => {
+        this.setState(({ clubs }) => ({
+            club: clubs.find(clb => clb.id === id)
+        }))
+    }
 
     render() {
         const clubs = this.getClubsByType(),
-            { category } = this.state
+            { category, club } = this.state
         return <Fragment>
             <Header />
 
             <Clubs
+                club={club}
                 category={category}
                 clubs={clubs}
+                onSelect={this.handleClubSelected}
             />
 
             <Footer 
                 category={category}
                 clubtype={clubtype}
-                onSelect={this.handleClubSelected}               
+                onSelect={this.handleCategorySelected}               
             />
         </Fragment>
     }

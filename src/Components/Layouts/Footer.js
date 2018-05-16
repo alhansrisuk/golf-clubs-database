@@ -22,7 +22,7 @@ export default ({ clubtype, category, onSelect }) => {
         >
             <Tab label="All" />
             { clubtype.map(type =>
-                <Tab label={type} />
+                <Tab key={type} label={type} />
             )}
         </Tabs>
     </Paper>
