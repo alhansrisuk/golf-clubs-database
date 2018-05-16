@@ -41,6 +41,7 @@ export default class extends Component {
             <Header />
 
             <Clubs
+                category={category}
                 clubs={clubs}
             />
 

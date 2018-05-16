@@ -13,12 +13,13 @@ const styles = {
 }
 
 // Business logic
-export default ({ clubs }) => 
+export default ({ clubs, category }) => 
     <Grid container>
         <Grid item sm>
             <Paper style={ styles.Paper }>
                 {clubs.map(([type, clubs]) =>
-                    <Fragment>
+                  !category || category === type
+                    ? <Fragment>
                         <Typography 
                             variant="headline"
                             style={{textTransform: 'capitalize'}}
@@ -31,8 +32,9 @@ export default ({ clubs }) =>
                                         <ListItemText primary={model} />
                                     </ListItem>
                             )}
-                            </List>
+                        </List>
                     </Fragment>
+                    : null
                 )}
             </Paper>
         </Grid>
