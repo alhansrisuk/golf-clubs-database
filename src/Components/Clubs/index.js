@@ -3,7 +3,13 @@ import { Grid, Paper, Typography, List } from 'material-ui'
 import { ListItem, ListItemText } from 'material-ui/List'
 
 const styles = {
-    Paper: { padding: 20, marginTop: 10, marginBottom: 10 }
+    Paper: { 
+        padding: 20, 
+        marginTop: 10, 
+        marginBottom: 10, 
+        height: 500, 
+        overflowY: 'auto'
+    }
 }
 
 // Business logic
@@ -32,7 +38,17 @@ export default ({ clubs }) =>
         </Grid>
         <Grid item sm>
             <Paper style={ styles.Paper }>
-                Right Pane
+                <Typography
+                    variant="display1"
+                > 
+                Welcome!
+                </Typography>
+                <Typography
+                    variant="subheading"
+                    style={{ marginTop: 15 }}
+                > 
+                Select a golf club from the list on the left.
+                </Typography>
             </Paper>
         </Grid>
     </Grid>
