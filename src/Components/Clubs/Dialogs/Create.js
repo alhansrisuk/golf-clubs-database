@@ -14,13 +14,13 @@ import Select from '@material-ui/core/Select';
 import { Add } from 'material-ui-icons';
 import { withStyles } from '@material-ui/core/styles';
 
-const syles = theme => ({
+const styles = theme => ({
     FormControl: {
         width: 500
     }
 })
 
-export default class extends Component {
+export default withStyles(styles)(class extends Component {
     state = {
         open: false,
         club: {
@@ -47,7 +47,7 @@ export default class extends Component {
 
     render() {
         const { open, club: { model, description, clubtype }  } = this.state,
-              { clubtype: categories } = this.props
+              { classes, clubtype: categories } = this.props
 
         return <Fragment>
         <Button variant="fab" onClick={ this.handleToggle } mini>
@@ -71,6 +71,7 @@ export default class extends Component {
                     value={model}
                     onChange={this.handleChange('model')}
                     margin="normal"
+                    className={classes.FormControl}
                 />
                 <br />
                     <FormControl>
@@ -108,4 +109,4 @@ export default class extends Component {
         </Dialog>
     </Fragment>
     }
-}
+})
