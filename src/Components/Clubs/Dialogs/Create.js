@@ -1,6 +1,7 @@
 import React, { Component ,Fragment } from 'react'
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
+import TextField from '@material-ui/core/TextField';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
@@ -10,7 +11,12 @@ import { Add } from 'material-ui-icons';
 
 export default class extends Component {
     state = {
-        open: false
+        open: false,
+        club: {
+            model: '',
+            description: '',
+            clubtype: '',
+        }
     }
 
     handleToggle = () => {
@@ -19,8 +25,17 @@ export default class extends Component {
         })
     }
 
+    handleChange = name => ({ target: { value }}) => {
+        this.setState ({
+            club: {
+                ...this.state.clubtype,
+                [name]: model
+            }
+        }) 
+    }
+
     render() {
-        const { open } = this.state
+        const { open, club: { title, description, clubtype }  } = this.state
 
         return <Fragment>
         <Button variant="fab" onClick={ this.handleToggle } mini>
@@ -39,6 +54,19 @@ export default class extends Component {
               Fill out the form below.
             </DialogContentText>
             <form>
+                <TextField
+                    label="Model"
+                    value={model}
+                    onChange={this.handleChange('model')}
+                    margin="normal"
+                />
+                <br />
+                <TextField
+                    label="Description"
+                    value={description}
+                    onChange={this.handleChange('description')}
+                    margin="normal"
+                />
             </form>
           </DialogContent>
           <DialogActions>
