@@ -74,7 +74,7 @@ export default withStyles(styles)(class extends Component {
                     className={classes.FormControl}
                 />
                 <br />
-                    <FormControl>
+                    <FormControl className={classes.FormControl}>
                         <InputLabel htmlFor="club">
                             Club Type
                         </InputLabel>
@@ -98,6 +98,7 @@ export default withStyles(styles)(class extends Component {
                     value={description}
                     onChange={this.handleChange('description')}
                     margin="normal"
+                    className={classes.FormControl}
                 />
             </form>
           </DialogContent>
