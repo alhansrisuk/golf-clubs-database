@@ -43,7 +43,9 @@ export default class extends Component {
         const clubs = this.getClubsByType(),
             { category, club } = this.state
         return <Fragment>
-            <Header />
+            <Header 
+                clubtype={clubtype}             
+            />
 
             <Clubs
                 club={club}

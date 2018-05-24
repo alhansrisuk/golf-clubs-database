@@ -6,8 +6,19 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import MenuItem from '@material-ui/core/MenuItem';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 import { Add } from 'material-ui-icons';
+import { withStyles } from '@material-ui/core/styles';
 
+const syles = theme => ({
+    FormControl: {
+        width: 500
+    }
+})
 
 export default class extends Component {
     state = {
@@ -25,7 +36,7 @@ export default class extends Component {
         })
     }
 
-    handleChange = name => ({ target: { value }}) => {
+    handleChange = name => ({ target: { model }}) => {
         this.setState ({
             club: {
                 ...this.state.clubtype,
@@ -35,7 +46,8 @@ export default class extends Component {
     }
 
     render() {
-        const { open, club: { title, description, clubtype }  } = this.state
+        const { open, club: { model, description, clubtype }  } = this.state,
+              { clubtype: categories } = this.props
 
         return <Fragment>
         <Button variant="fab" onClick={ this.handleToggle } mini>
@@ -61,7 +73,26 @@ export default class extends Component {
                     margin="normal"
                 />
                 <br />
+                    <FormControl>
+                        <InputLabel htmlFor="club">
+                            Club Type
+                        </InputLabel>
+                        <Select
+                            value={clubtype}
+                            onChange={this.handleChange('clubtype')}
+                        >
+                            {categories.map(category => 
+                                <MenuItem value={category}>
+                                    {category}
+                                </MenuItem>
+                            )}
+
+                        </Select>
+                    </FormControl>
+                <br />
                 <TextField
+                    multiline
+                    rows="4"
                     label="Description"
                     value={description}
                     onChange={this.handleChange('description')}
